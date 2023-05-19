@@ -906,12 +906,12 @@ config DATA_SHIFT
 
 config ARCH_FORCE_MAX_ORDER
 	int "Order of maximal physically contiguous allocations"
-	default "8" if PPC64 && PPC_64K_PAGES
-	default "12" if PPC64 && !PPC_64K_PAGES
-	default "8" if PPC32 && PPC_16K_PAGES
-	default "6" if PPC32 && PPC_64K_PAGES
-	default "4" if PPC32 && PPC_256K_PAGES
-	default "10"
+        range 8 8 if PPC64 && PPC_64K_PAGES
+        range 12 12 if PPC64 && !PPC_64K_PAGES
+        range 8 8 if PPC32 && PPC_16K_PAGES
+        range 6 6 if PPC32 && PPC_64K_PAGES
+        range 4 4 if PPC32 && PPC_256K_PAGE
+        default "10"
 	help
 	  The kernel page allocator limits the size of maximal physically
 	  contiguous allocations. The limit is called MAX_ORDER and it
